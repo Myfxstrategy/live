@@ -1,894 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRO Rotator Academy | How to Trade Our Signals</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-            min-height: 100vh;
-            color: #fff;
-        }
-        .header {
-            background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
-            padding: 40px;
-            text-align: center;
-            border-bottom: 1px solid #FFD700;
-        }
-        .header h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(90deg, #FFD700, #FF6B6B, #4ECDC4);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .header p { color: #888; margin-top: 10px; }
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 15px;
-        }
-        .nav-links a {
-            color: #FFD700;
-            text-decoration: none;
-            padding: 5px 15px;
-            border-radius: 20px;
-            background: rgba(0,0,0,0.3);
-            font-size: 0.85rem;
-        }
-        .nav-links a:hover {
-            background: #FFD700;
-            color: #000;
-        }
-        .progress-container {
-            background: #1a1a2e;
-            padding: 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #333;
-        }
-        .progress-bar {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .progress-text {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.85rem;
-        }
-        .progress-track {
-            background: #333;
-            height: 10px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .progress-fill {
-            background: linear-gradient(90deg, #FFD700, #00ff88);
-            height: 100%;
-            width: 0%;
-            transition: width 0.5s ease;
-            border-radius: 10px;
-        }
-        .contact-bar {
-            background: rgba(0,0,0,0.5);
-            padding: 10px 20px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            font-size: 0.8rem;
-            border-bottom: 1px solid #333;
-        }
-        .contact-item a { color: #FFD700; text-decoration: none; }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        .course-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        .module-card {
-            background: rgba(0,0,0,0.6);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid #333;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-        .module-card:hover { transform: translateY(-5px); border-color: #FFD700; }
-        .module-card.completed { border-left: 4px solid #00ff88; }
-        .module-header {
-            background: rgba(0,0,0,0.4);
-            padding: 20px;
-            border-bottom: 1px solid #333;
-        }
-        .module-icon { font-size: 2rem; margin-bottom: 10px; }
-        .module-title { font-size: 1.3rem; color: #FFD700; }
-        .module-difficulty { font-size: 0.7rem; color: #888; margin-top: 5px; }
-        .module-content { padding: 20px; }
-        .lesson-list { list-style: none; }
-        .lesson-item {
-            padding: 12px 0;
-            border-bottom: 1px solid #333;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .lesson-item:hover { background: rgba(255,215,0,0.1); padding-left: 10px; }
-        .lesson-check {
-            width: 22px; height: 22px; border-radius: 50%;
-            border: 2px solid #555;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            flex-shrink: 0;
-        }
-        .lesson-check.completed { background: #00ff88; border-color: #00ff88; color: #000; }
-        .lesson-title { flex: 1; font-size: 0.9rem; }
-        .lesson-status { font-size: 0.7rem; color: #888; }
-        .quiz-section {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(0,0,0,0.4);
-            border-radius: 15px;
-            border: 1px solid #333;
-        }
-        .quiz-question {
-            margin: 15px 0;
-            padding: 15px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
-        }
-        .quiz-option {
-            display: block;
-            margin: 8px 0;
-            padding: 8px 12px;
-            background: #2a2a3e;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .quiz-option:hover { background: #3a3a4e; transform: translateX(5px); }
-        .quiz-option.selected { background: #FFD700; color: #000; }
-        .quiz-submit {
-            background: #FFD700;
-            color: #000;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-        .quiz-result {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 10px;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        .modal.active { display: flex; }
-        .modal-content {
-            max-width: 800px;
-            width: 100%;
-            background: linear-gradient(135deg, #1a1a2e, #0a0a0a);
-            border-radius: 20px;
-            border: 1px solid #FFD700;
-            overflow: hidden;
-        }
-        .modal-header {
-            padding: 20px;
-            background: rgba(0,0,0,0.4);
-            border-bottom: 1px solid #333;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .modal-header h2 { color: #FFD700; }
-        .close-modal {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        .modal-body {
-            padding: 20px;
-            max-height: 60vh;
-            overflow-y: auto;
-            line-height: 1.6;
-        }
-        .modal-footer {
-            padding: 20px;
-            border-top: 1px solid #333;
-            display: flex;
-            justify-content: space-between;
-        }
-        .complete-lesson-btn {
-            background: #00aa44;
-            color: #fff;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-        }
-        .complete-lesson-btn.completed {
-            background: #333;
-            cursor: default;
-        }
-        .certificate-section {
-            background: linear-gradient(135deg, #1a1a2e, #0a0a0a);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            border: 1px solid #FFD700;
-            margin-top: 40px;
-        }
-        .certificate-preview {
-            background: #fff;
-            color: #000;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 20px 0;
-        }
-        .certificate-preview h2 { color: #FFD700; font-family: 'Georgia', serif; }
-        .certificate-preview .student-name {
-            font-size: 1.5rem;
-            margin: 20px 0;
-            font-family: 'Georgia', serif;
-            border-bottom: 2px solid #FFD700;
-            display: inline-block;
-            padding: 0 20px;
-        }
-        .download-certificate {
-            background: #FFD700;
-            color: #000;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .trial-section {
-            background: linear-gradient(135deg, #1a1a2e, #0a0a0a);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            border: 1px solid #FFD700;
-            margin-top: 30px;
-        }
-        .trial-btn {
-            background: linear-gradient(90deg, #FFD700, #FF6B6B);
-            color: #000;
-            border: none;
-            padding: 15px 50px;
-            border-radius: 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .quick-ref {
-            background: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        .ref-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .ref-card {
-            background: rgba(0,0,0,0.4);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #555;
-            border-top: 1px solid #333;
-            margin-top: 40px;
-        }
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #00aa44;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 10px;
-            z-index: 2000;
-            animation: fadeInOut 3s ease;
-        }
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(20px); }
-            15% { opacity: 1; transform: translateY(0); }
-            85% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-20px); }
-        }
-        .example-box {
-            background: #0a2a2a;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            font-family: monospace;
-            white-space: pre-wrap;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Alpha Sniper – Live Crypto Market Radar + Bot</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at 10% 20%, #0a0f1e, #03050b);
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+      color: #eef2ff;
+      padding: 1.5rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .glass {
+      background: rgba(18, 25, 45, 0.65);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .header {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ff4d4d;
+      color: white;
+      font-weight: bold;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); background: #ff1a1a; }
+      100% { opacity: 0.7; transform: scale(1); }
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      background: linear-gradient(135deg, #00d4ff, #7b2eda);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .sub {
+      font-size: 1.1rem;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+
+    .countdown {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 60px;
+      padding: 0.8rem 1.5rem;
+      display: inline-flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      font-family: monospace;
+      font-weight: bold;
+    }
+
+    .countdown span {
+      font-size: 1.8rem;
+      background: #00d4ff;
+      color: #0a0f1e;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      margin: 0 0.2rem;
+    }
+
+    /* Feature boxes */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .feature {
+      text-align: center;
+      padding: 1.5rem;
+    }
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+    }
+    .feature h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #ffd700;
+    }
+    .feature p {
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    /* MARKET GRID */
+    .market-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      padding: 1.5rem;
+    }
+
+    .card h2 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.5rem;
+    }
+
+    .coin-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .coin-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.6rem;
+    }
+
+    .coin-name {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .coin-price {
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+
+    .coin-change {
+      font-weight: bold;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .positive {
+      color: #00ffaa;
+    }
+    .negative {
+      color: #ff4444;
+    }
+
+    /* CTA SECTION */
+    .cta {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 1rem;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(123, 46, 218, 0.15));
+    }
+
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: #25D366;
+      color: white;
+      font-weight: bold;
+      font-size: 1.3rem;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    }
+
+    .limited {
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      background: rgba(255, 68, 68, 0.2);
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      opacity: 0.5;
+    }
+
+    @media (max-width: 700px) {
+      body { padding: 1rem; }
+      .market-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+      .countdown span { font-size: 1.2rem; }
+    }
+
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
-<div class="header">
-    <h1>📚 PRO ROTATOR TRADING ACADEMY</h1>
-    <p>Learn how to read and act on our BUY signals and OVERBOUGHT alerts – no complex formulas, just practical steps.</p>
-    <div class="nav-links">
-        <a href="#" style="cursor:default; background:rgba(255,215,0,0.2);">📚 Academy</a>
-    </div>
-</div>
-<div class="contact-bar">
-    <div class="contact-item">📧 Email: <a href="mailto:ukdesigner62@gmail.com">ukdesigner62@gmail.com</a></div>
-    <div class="contact-item">💬 WhatsApp: <a href="https://wa.me/447492166072">+447492166072</a></div>
-    <div class="contact-item">🎓 Support: Mon-Fri 9am-6pm GMT</div>
-</div>
-<div class="progress-container">
-    <div class="progress-bar">
-        <div class="progress-text">
-            <span>📊 Course Progress</span>
-            <span id="progressPercent">0%</span>
-        </div>
-        <div class="progress-track">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-        <div style="margin-top: 8px; font-size: 0.7rem; color: #888;">
-            ✅ Complete all lessons to receive your certificate.
-        </div>
-    </div>
-</div>
 <div class="container">
-    <div class="course-grid" id="courseGrid"></div>
-
-    <div class="certificate-section" id="certificateSection" style="display: none;">
-        <h2>🎓 Course Completion Certificate</h2>
-        <p>Congratulations! You've mastered how to trade PRO Rotator signals.</p>
-        <div class="certificate-preview" id="certificatePreview">
-            <h2>🏆 CERTIFICATE OF COMPLETION</h2>
-            <p>This certificate is awarded to</p>
-            <div class="student-name" id="studentName">[Your Name]</div>
-            <p>for successfully completing the</p>
-            <h3>PRO Rotator User Course</h3>
-            <p>Understanding BUY signals and OVERBOUGHT alerts, risk management, and trade execution.<br>Auto-Scan & Telegram Alerts</p>
-            <p style="margin-top: 30px;">📅 <span id="completionDate"></span></p>
-        </div>
-        <button class="download-certificate" onclick="downloadCertificate()">📥 Download Certificate (PNG)</button>
+  <div class="glass header">
+    <div class="badge">🔥 LIMITED SPOTS 🔥</div>
+    <h1>⚡ ALPHA SNIPER</h1>
+    <div class="sub">Real-time crypto market radar + Automated Copy‑Trading Bot</div>
+    <div class="countdown" id="countdown">
+      <span id="days">00</span>d <span id="hours">00</span>h <span id="minutes">00</span>m <span id="seconds">00</span>s
     </div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem;">⏳ 7‑day trial ends in</div>
+  </div>
 
-    <div class="trial-section">
-        <h2>🚀 Ready to Trade?</h2>
-        <p>When you finish the course and feel confident, you can request a <strong>7‑day free trial</strong>.</p>
-        <button class="trial-btn" id="trialBtn">📞 Contact Admin for 7‑Day Trial</button>
-        <div id="trialMessage" style="margin-top: 15px;"></div>
+  <!-- NEW: What is Alpha Sniper? -->
+  <div class="features">
+    <div class="glass feature">
+      <div class="feature-icon">📊</div>
+      <h3>Live Market Radar</h3>
+      <p>Top gainers & losers updated every 30 seconds from 26+ coins. Never miss a pump again.</p>
     </div>
+    <div class="glass feature">
+      <div class="feature-icon">🤖</div>
+      <h3>Copy‑Trading Signals</h3>
+      <p>My personal Spot Martingale bot (ENA/USDT) with +2.49 USDT profit in 4h. You copy 1‑click on Bitget.</p>
+    </div>
+    <div class="glass feature">
+      <div class="feature-icon">📈</div>
+      <h3>Portfolio Tracker</h3>
+      <p>Add your own coins via Telegram – bot calculates live P&amp;L, total value, and percentage returns.</p>
+    </div>
+    <div class="glass feature">
+      <div class="feature-icon">🔒</div>
+      <h3>No API Keys Needed</h3>
+      <p>Your funds stay on your exchange. The bot just shows you the market and tracks your portfolio.</p>
+    </div>
+  </div>
 
-    <div class="quick-ref">
-        <h3>📖 Quick Reference – How to Use Our Signals</h3>
-        <div class="ref-grid">
-            <div class="ref-card"><span class="buy">🟢 BUY SIGNAL</span><br>Enter LONG (buy) with suggested Entry Zone, TP1, TP2, SL.</div>
-            <div class="ref-card"><span class="sell">🔴 OVERBOUGHT ALERT</span><br>Take profit on existing longs, avoid new buys, wait for reversal.</div>
-            <div class="ref-card">📤 TAKE PROFIT<br>Close at suggested TP levels (partial or full).</div>
-            <div class="ref-card">🛑 STOP LOSS<br>Always set – max loss per trade 1-2%.</div>
-            <div class="ref-card">⭐ CONFIDENCE<br>Higher % = stronger signal (≥70% recommended).</div>
-            <div class="ref-card">📈 TREND ARROW<br>📈 up / 📉 down / ➡️ flat (last 20 candles).</div>
-        </div>
+  <div class="market-grid">
+    <div class="glass card">
+      <h2>🏆 TOP GAINERS (24h)</h2>
+      <div id="gainersList" class="coin-list">
+        <div class="loading">Loading market data...</div>
+      </div>
     </div>
-</div>
-<footer>
-    <p>© 2026 PRO Rotator Strategy | Professional Trading Signals</p>
-    <p>Contact: ukdesigner62@gmail.com | WhatsApp: +447492166072</p>
-    <p>Complete all lessons → Certificate of Completion</p>
-</footer>
+    <div class="glass card">
+      <h2>📉 TOP LOSERS (24h)</h2>
+      <div id="losersList" class="coin-list">
+        <div class="loading">Loading market data...</div>
+      </div>
+    </div>
+  </div>
 
-<div id="lessonModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2 id="modalTitle">Lesson Title</h2>
-            <button class="close-modal" onclick="closeModal()">✕</button>
-        </div>
-        <div class="modal-body" id="modalBody"></div>
-        <div class="modal-footer">
-            <button class="complete-lesson-btn" id="completeLessonBtn" onclick="completeCurrentLesson()">✅ Mark as Complete</button>
-            <button class="complete-lesson-btn" onclick="closeModal()" style="background:#333;">Close</button>
-        </div>
-    </div>
+  <div class="glass cta">
+    <h2>🚀 WHAT YOU GET WITH THE BOT</h2>
+    <p>✅ Instant market overview (top gainers/losers)<br>
+    ✅ Personal portfolio tracking (add your coins, see P&amp;L)<br>
+    ✅ Daily copy‑trading signals based on my real Martingale strategy<br>
+    ✅ 24/7 automated alerts – no need to watch charts<br>
+    ✅ Full Telegram assistant – type /market, /portfolio, /add</p>
+    <div class="limited">🔥 Limited free trial spots: 50 total – 23 left</div>
+    <a href="https://wa.me/447492166072?text=Hello%21%20I%20want%20my%207-day%20free%20trial%20for%20Alpha%20Sniper%20bot" 
+       class="whatsapp-btn" target="_blank">
+      📲 CLAIM 7‑DAY TRIAL → ASK ON WHATSAPP
+    </a>
+    <p style="margin-top: 1rem; font-size: 0.85rem;">📞 Just say "I want my 7‑day trial" – no payment, no strings attached.</p>
+  </div>
+  <footer>
+    🚀 Live market data from Binance | Not financial advice | Crypto is volatile – invest what you can lose
+  </footer>
 </div>
 
 <script>
-    // ========== COURSE DATA – updated for OVERBOUGHT ALERT ==========
-    const modules = [
-        {
-            id: 1,
-            icon: "📨",
-            title: "What You Receive",
-            difficulty: "⭐ Beginner",
-            lessons: [
-                { id: "1.1", title: "Understanding the BUY Signal Message" },
-                { id: "1.2", title: "Understanding the OVERBOUGHT ALERT" }
-            ]
-        },
-        {
-            id: 2,
-            icon: "⚡",
-            title: "Key Metrics Explained",
-            difficulty: "⭐ Beginner",
-            lessons: [
-                { id: "2.1", title: "Confidence % & Strength Bar" },
-                { id: "2.2", title: "Trend Arrow (20 candles)" }
-            ]
-        },
-        {
-            id: 3,
-            icon: "📊",
-            title: "Trade Plan (LONG)",
-            difficulty: "⭐ Beginner",
-            lessons: [
-                { id: "3.1", title: "Entry Zone, Take Profit & Stop Loss" },
-                { id: "3.2", title: "Example: BUY Signal Walkthrough" }
-            ]
-        },
-        {
-            id: 4,
-            icon: "🤖",
-            title: "How Signals Reach You",
-            difficulty: "⭐ Beginner",
-            lessons: [
-                { id: "4.1", title: "Telegram Alerts & Cooldown" },
-                { id: "4.2", title: "Auto-Scan (24/7 Monitoring)" }
-            ]
-        },
-        {
-            id: 5,
-            icon: "🎯",
-            title: "Risk Management",
-            difficulty: "⭐ Beginner",
-            lessons: [
-                { id: "5.1", title: "Stop Loss & Position Sizing" },
-                { id: "5.2", title: "Avoiding Overtrading" }
-            ]
-        },
-        {
-            id: 6,
-            icon: "✅",
-            title: "Final Quiz",
-            difficulty: "⭐ Beginner",
-            lessons: [
-                { id: "6.1", title: "Test Your Knowledge" }
-            ]
+  // List of 26 interesting coins (same as your bot)
+  const COINS = [
+    'ENAUSDT', 'BTCUSDT', 'ETHUSDT', 'NEARUSDT', 'SOLUSDT', 'AVAXUSDT', 'ADAUSDT',
+    'BNBUSDT', 'XRPUSDT', 'DOGEUSDT', 'DOTUSDT', 'LINKUSDT', 'MATICUSDT', 'UNIUSDT',
+    'ATOMUSDT', 'LTCUSDT', 'ETCUSDT', 'FILUSDT', 'APTUSDT', 'ARBUSDT', 'OPUSDT',
+    'INJUSDT', 'SUIUSDT', 'TIAUSDT', 'SEIUSDT', 'WIFUSDT'
+  ];
+
+  // Fetch all tickers from Binance and filter our coins
+  async function fetchMarketData() {
+    try {
+      const response = await fetch('https://api.binance.com/api/v3/ticker/24hr');
+      const all = await response.json();
+      const filtered = [];
+      for (const coin of COINS) {
+        const ticker = all.find(t => t.symbol === coin);
+        if (ticker) {
+          filtered.push({
+            symbol: coin.replace('USDT', ''),
+            price: parseFloat(ticker.lastPrice),
+            change: parseFloat(ticker.priceChangePercent)
+          });
         }
-    ];
-
-    // Lesson content – updated for OVERBOUGHT ALERT
-    const lessonContent = {
-        '1.1': {
-            title: "BUY Signal Message",
-            content: `
-                <h3>🟢 What a BUY Signal Looks Like</h3>
-                <p>When the bot detects a BUY opportunity, you will receive a message like this:</p>
-                <div class="example-box">
-🚀 *CRYPTO ROTATOR PRO* – 🟢 *BUY SIGNAL DETECTED*
-
----
-📊 *MARKET EDGE*
----
-💎 *PAIR:* \`BTC/USDT\`
-💰 *PRICE:* \`$62345.00\`
-⚡ *Z-Score:* \`-1.62\` (Oversold)
-📈 *RSI(14):* \`38\`
-⭐ *Confidence:* \`78%\` 🔥
-
-💪 *Strength:* \`███████░░░ 78%\`
-📉 *Trend (20 candles):* 📈 \`+2.3%\`
-
----
-📌 *TRADE PLAN (LONG)*
----
-✅ *Entry Zone:* \`$62033 - $62656\`
-🎯 *Take Profit 1:* \`$63592\`
-🎯 *Take Profit 2:* \`$64839\`
-🛑 *Stop Loss:* \`$61098\`
-
-💡 *Tip:* Never risk more than 2% per trade.
-                </div>
-                <h3>📌 What to DO:</h3>
-                <ul>
-                    <li><strong>ENTER</strong> a LONG (buy) position when price is inside the <strong>Entry Zone</strong>.</li>
-                    <li><strong>TAKE PROFIT 1</strong> – close part of your position.</li>
-                    <li><strong>TAKE PROFIT 2</strong> – close the rest.</li>
-                    <li><strong>STOP LOSS</strong> – always set it to protect your capital.</li>
-                </ul>
-                <div style="background:#0a2a0a; padding:15px; border-radius:10px; margin-top:15px;">
-                    💡 <strong>PRO TIP:</strong> Higher Confidence (≥70%) means the signal is stronger. Start with small position sizes until you gain experience.
-                </div>
-            `
-        },
-        '1.2': {
-            title: "OVERBOUGHT ALERT",
-            content: `
-                <h3>⚠️ What an OVERBOUGHT ALERT Looks Like</h3>
-                <p>When the bot detects an overbought market (no new entry, only a warning), you will receive a message like this:</p>
-                <div class="example-box">
-⚠️ *CRYPTO ROTATOR PRO* – 🔴 *OVERBOUGHT ALERT* (Take Profit / Avoid New Buys)
-
----
-📊 *MARKET EDGE*
----
-💎 *PAIR:* \`ETH/USDT\`
-💰 *PRICE:* \`$3120.00\`
-⚡ *Z-Score:* \`+1.78\` (Overbought – Reversal Likely)
-📈 *RSI(14):* \`62\`
-⭐ *Confidence:* \`75%\` 🔥
-
-💪 *Strength:* \`███████░░░ 75%\`
-📉 *Trend (20 candles):* 📉 \`-1.5%\`
-
----
-⚠️ *OVERBOUGHT WARNING*
----
-🔴 The market is **overbought** (Z > 1, RSI > 55).  
-💡 *What you can do:*  
-• Consider **closing existing long positions** (take profit).  
-• Avoid opening new long positions.  
-• Wait for Z‑score to return near zero before re‑entering.  
-• *If you short*, wait for confirmation – this is not an automatic entry signal.
-
-📖 *Remember:* This is a warning, not a short entry. Always use proper risk management.
-                </div>
-                <h3>📌 What to DO when you see this alert:</h3>
-                <ul>
-                    <li><strong>Take profit</strong> on any long positions you currently hold.</li>
-                    <li><strong>Do not open new long positions</strong> until the market cools down.</li>
-                    <li>If you short, wait for additional confirmation – the alert alone is not a trading signal.</li>
-                    <li>Monitor the Z‑score – when it returns near zero, the warning ends.</li>
-                </ul>
-                <div style="background:#2a0a0a; padding:15px; border-radius:10px; margin-top:15px;">
-                    💡 <strong>Important:</strong> This alert appears when the market is extended. It prevents you from buying at the top and helps lock in profits.
-                </div>
-            `
-        },
-        '2.1': {
-            title: "Confidence % & Strength Bar",
-            content: `
-                <h3>⭐ Understanding Confidence (Quality)</h3>
-                <p>After each signal, you see a percentage like <code>⭐ Confidence: 78%</code> and a visual bar: <code>███████░░░ 78%</code>.</p>
-                <ul>
-                    <li><strong>80–100%</strong> → Very strong signal (high probability).</li>
-                    <li><strong>60–79%</strong> → Good signal (normal quality).</li>
-                    <li><strong>Below 60%</strong> → Weak signal (use caution or skip).</li>
-                </ul>
-                <h3>💪 Strength Bar</h3>
-                <p>Each block (█) represents 10% confidence. More filled blocks = stronger signal.</p>
-                <div style="background:#0a2a0a; padding:15px; border-radius:10px;">
-                    💡 <strong>Pro tip:</strong> If the confidence is below 60%, consider reducing your position size or waiting for a better setup.
-                </div>
-            `
-        },
-        '2.2': {
-            title: "Trend Arrow (20 candles)",
-            content: `
-                <h3>📉 Trend (20 candles)</h3>
-                <p>You will see a line like: <code>📉 *Trend (20 candles):* 📈 +2.3%</code></p>
-                <ul>
-                    <li><strong>📈 up arrow</strong> → Price increased over last 20 candles (uptrend).</li>
-                    <li><strong>📉 down arrow</strong> → Price decreased (downtrend).</li>
-                    <li><strong>➡️ flat arrow</strong> → Little change (sideways).</li>
-                    <li>The number (+2.3%) shows the total percentage change over the last 20 candles.</li>
-                </ul>
-                <p>This helps you quickly see the recent momentum. For a BUY signal, a positive trend arrow is a good confirmation. For an OVERBOUGHT alert, a strong uptrend supports the warning.</p>
-            `
-        },
-        '3.1': {
-            title: "Entry Zone, TP & SL",
-            content: `
-                <h3>📌 Trade Plan Explained</h3>
-                <ul>
-                    <li><strong>Entry Zone</strong> – The price range where you should enter the trade (buy long). Try to enter within this zone for best risk/reward.</li>
-                    <li><strong>Take Profit 1 (TP1)</strong> – First target. Consider closing 50% of your position here and moving stop loss to breakeven.</li>
-                    <li><strong>Take Profit 2 (TP2)</strong> – Second target. Close remaining position or let a small runner ride.</li>
-                    <li><strong>Stop Loss (SL)</strong> – Maximum loss you accept. Never move it further away. Always set it as soon as you enter.</li>
-                </ul>
-                <div style="background:#0a2a0a; padding:15px; border-radius:10px;">
-                    📐 Risk / reward ratio is typically > 1:1. For example, risk 2% to gain 4% (TP2).
-                </div>
-            `
-        },
-        '3.2': {
-            title: "Example: BUY Signal Walkthrough",
-            content: `
-                <h3>Step‑by‑step example</h3>
-                <p>Imagine you receive a BUY signal for BTC/USDT with:</p>
-                <ul>
-                    <li>Entry Zone: $62000 – $62500</li>
-                    <li>TP1: $63750</li>
-                    <li>TP2: $65000</li>
-                    <li>SL: $61200</li>
-                </ul>
-                <h4>Action plan:</h4>
-                <ol>
-                    <li>Set a limit order to buy at $62300 (within entry zone) or enter manually when price reaches that area.</li>
-                    <li>Place stop loss at $61200 (immediately).</li>
-                    <li>Set take profit orders at $63750 and $65000.</li>
-                    <li>When price hits TP1, optionally close half and move SL to breakeven.</li>
-                    <li>Let remaining position run to TP2.</li>
-                </ol>
-                <p>Never risk more than 2% of your account on any single trade.</p>
-            `
-        },
-        '4.1': {
-            title: "Telegram Alerts & Cooldown",
-            content: `
-                <h3>🤖 How Signals Reach You</h3>
-                <p>Once you have joined the bot via an invite link, you will receive <strong>instant Telegram messages</strong> whenever a BUY signal or OVERBOUGHT alert is generated for any tracked pair.</p>
-                <h3>⏱️ Cooldown Period</h3>
-                <p>To avoid alert spam, the same coin+type (e.g., BTC BUY) will not be sent again for <strong>5 minutes</strong> (configurable). This ensures you get fresh signals without overload.</p>
-                <p>If you miss a signal, you can always check the Live Dashboard for recent signals.</p>
-            `
-        },
-        '4.2': {
-            title: "Auto-Scan (24/7 Monitoring)",
-            content: `
-                <h3>🔄 Market Scanner</h3>
-                <p>The system automatically scans all tracked pairs (BTC, ETH, BNB, SOL, XRP, ADA, DOGE, LINK, MATIC, and many more) every X minutes (default 10). If any pair meets our BUY criteria or becomes overbought, a message is sent instantly.</p>
-                <p>You do not need to watch charts – the bot does the work and alerts you.</p>
-                <div style="background:#0a2a0a; padding:15px; border-radius:10px;">
-                    💡 You can change the scan interval, thresholds, and filters through the admin panel (admin only).
-                </div>
-            `
-        },
-        '5.1': {
-            title: "Stop Loss & Position Sizing",
-            content: `
-                <h3>🛑 Why Stop Loss is Essential</h3>
-                <p>A stop loss is an order that automatically closes your trade if the market moves against you beyond a certain point. <strong>Never trade without a stop loss.</strong></p>
-                <h3>⚖️ Position Sizing</h3>
-                <p>Risk only 1-2% of your total capital per trade. Example: If you have $10,000, never risk more than $200 on a single trade. Use the stop loss distance to calculate how many coins/shares to buy.</p>
-                <div class="example-box">
-Formula: Position size = (Account risk) / (Entry price - Stop loss price)
-Example: $200 risk / ($62500 - $61200) = $200 / 1300 ≈ 0.1538 BTC.
-                </div>
-            `
-        },
-        '5.2': {
-            title: "Avoiding Overtrading",
-            content: `
-                <h3>📉 Don't Chase Every Signal</h3>
-                <p>Not every signal will work. Market conditions change. If you take too many trades, you increase transaction costs and exposure.</p>
-                <ul>
-                    <li>Focus on signals with <strong>Confidence ≥ 70%</strong>.</li>
-                    <li>Avoid entering during major news events (unless you know how to handle volatility).</li>
-                    <li>Take breaks – do not trade when tired or frustrated.</li>
-                </ul>
-                <div style="background:#2a0a0a; padding:15px; border-radius:10px;">
-                    ✅ A good target is 3-5 trades per week. Quality over quantity.
-                </div>
-            `
-        },
-        '6.1': {
-            title: "Test Your Knowledge",
-            content: `
-                <h3>✅ Final Quiz</h3>
-                <p>Answer the questions below to confirm you understand how to use our signals. Upon passing, you can mark this lesson as complete and receive your certificate.</p>
-                <div id="finalQuizContainer"></div>
-                <button class="quiz-submit" onclick="submitFinalQuiz()">Submit Quiz</button>
-                <div id="finalQuizResult"></div>
-            `
-        }
-    };
-
-    // Final quiz questions (still valid)
-    const finalQuiz = [
-        { question: "When you receive a BUY signal, what should you do?", options: ["Open a SHORT (sell) position", "Open a LONG (buy) position", "Do nothing", "Close all trades"], correct: 1 },
-        { question: "What does the Confidence (Quality) percentage tell you?", options: ["How much money to risk", "How many candles to wait", "Signal strength (higher = better)", "Time until next signal"], correct: 2 },
-        { question: "What is the purpose of the Stop Loss (SL) suggested in the signal?", options: ["To take profit early", "To limit your maximum loss", "To automatically close at TP1", "To cancel the trade"], correct: 1 },
-        { question: "If you see an OVERBOUGHT alert for a coin you hold, what is the recommended action?", options: ["Open a new long position", "Take profit on your long position", "Ignore it", "Short immediately"], correct: 1 },
-        { question: "After a BUY signal is sent for BTC/USDT, how long before the same pair+type can send another signal (by default)?", options: ["1 minute", "5 minutes", "1 hour", "Only once per day"], correct: 1 },
-        { question: "What is the recommended maximum % of your capital to risk per trade?", options: ["10%", "25%", "1-2%", "50%"], correct: 2 }
-    ];
-
-    let completedLessons = JSON.parse(localStorage.getItem('pro_academy_completed') || '[]');
-    let finalQuizAnswers = JSON.parse(localStorage.getItem('pro_academy_final_quiz') || '{}');
-    let studentName = localStorage.getItem('pro_academy_name') || '';
-    let currentLessonId = null;
-
-    function buildCourseGrid() {
-        const grid = document.getElementById('courseGrid');
-        grid.innerHTML = '';
-        modules.forEach(module => {
-            const moduleCompleted = module.lessons.every(l => completedLessons.includes(l.id));
-            const card = document.createElement('div');
-            card.className = `module-card ${moduleCompleted ? 'completed' : ''}`;
-            let lessonsHtml = '';
-            module.lessons.forEach(lesson => {
-                const isCompleted = completedLessons.includes(lesson.id);
-                lessonsHtml += `
-                    <li class="lesson-item" data-lesson="${lesson.id}">
-                        <div class="lesson-check ${isCompleted ? 'completed' : ''}">${isCompleted ? '✓' : ''}</div>
-                        <span class="lesson-title">${lesson.title}</span>
-                        <span class="lesson-status">${isCompleted ? '✅ Completed' : '📖 Not started'}</span>
-                    </li>
-                `;
-            });
-            card.innerHTML = `
-                <div class="module-header">
-                    <div class="module-icon">${module.icon}</div>
-                    <div class="module-title">${module.title}</div>
-                    <div class="module-difficulty">${module.difficulty} | ${module.lessons.length} lessons</div>
-                </div>
-                <div class="module-content"><ul class="lesson-list">${lessonsHtml}</ul></div>
-            `;
-            grid.appendChild(card);
-        });
-        document.querySelectorAll('.lesson-item').forEach(item => {
-            item.addEventListener('click', () => openLesson(item.dataset.lesson));
-        });
+      }
+      // sort by change descending
+      const sorted = [...filtered].sort((a,b) => b.change - a.change);
+      const gainers = sorted.filter(c => c.change > 0).slice(0, 5);
+      const losers = sorted.filter(c => c.change < 0).reverse().slice(0, 5);
+      renderList('gainersList', gainers, true);
+      renderList('losersList', losers, false);
+    } catch (err) {
+      console.error(err);
+      document.getElementById('gainersList').innerHTML = '<div class="loading">⚠️ Failed to load data. Try again later.</div>';
+      document.getElementById('losersList').innerHTML = '<div class="loading">⚠️ Failed to load data. Try again later.</div>';
     }
+  }
 
-    function openLesson(lessonId) {
-        currentLessonId = lessonId;
-        const lesson = lessonContent[lessonId];
-        if (!lesson) return;
-        document.getElementById('modalTitle').innerHTML = lesson.title;
-        let contentHtml = lesson.content;
-        if (lessonId === '6.1') {
-            contentHtml = lesson.content.replace('<div id="finalQuizContainer"></div>', generateFinalQuizHtml());
-        }
-        document.getElementById('modalBody').innerHTML = contentHtml;
-        const isCompleted = completedLessons.includes(lessonId);
-        const btn = document.getElementById('completeLessonBtn');
-        if (isCompleted) {
-            btn.innerHTML = '✅ Already Completed';
-            btn.classList.add('completed');
-            btn.disabled = true;
-        } else {
-            btn.innerHTML = '✅ Mark as Complete';
-            btn.classList.remove('completed');
-            btn.disabled = false;
-        }
-        document.getElementById('lessonModal').classList.add('active');
-        if (lessonId === '6.1') attachFinalQuizHandlers();
+  function renderList(elementId, items, isGainer) {
+    const container = document.getElementById(elementId);
+    if (!items.length) {
+      container.innerHTML = '<div class="loading">No data</div>';
+      return;
     }
-
-    function generateFinalQuizHtml() {
-        let html = '';
-        finalQuiz.forEach((q, idx) => {
-            const saved = finalQuizAnswers[idx];
-            html += `<div class="quiz-question" data-qidx="${idx}"><p><strong>${idx+1}. ${q.question}</strong></p>`;
-            q.options.forEach((opt, optIdx) => {
-                html += `<div class="quiz-option ${saved === optIdx ? 'selected' : ''}" data-opt="${optIdx}">${String.fromCharCode(65+optIdx)}. ${opt}</div>`;
-            });
-            html += `</div>`;
-        });
-        return html;
-    }
-
-    function attachFinalQuizHandlers() {
-        document.querySelectorAll('#modalBody .quiz-option').forEach(opt => {
-            opt.onclick = (e) => {
-                const parent = opt.closest('.quiz-question');
-                const qIdx = parseInt(parent.dataset.qidx);
-                parent.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
-                opt.classList.add('selected');
-                finalQuizAnswers[qIdx] = parseInt(opt.dataset.opt);
-                localStorage.setItem('pro_academy_final_quiz', JSON.stringify(finalQuizAnswers));
-            };
-        });
-    }
-
-    function submitFinalQuiz() {
-        let score = 0;
-        finalQuiz.forEach((q, idx) => {
-            if (finalQuizAnswers[idx] === q.correct) score++;
-        });
-        const passed = score >= Math.ceil(finalQuiz.length * 0.7);
-        const resultDiv = document.getElementById('finalQuizResult');
-        if (passed) {
-            resultDiv.innerHTML = `<div style="background:#00aa44; padding:10px; border-radius:10px;">✅ Quiz passed! ${score}/${finalQuiz.length} correct. You can now mark this lesson as complete.</div>`;
-        } else {
-            resultDiv.innerHTML = `<div style="background:#ff4444; padding:10px; border-radius:10px;">❌ Quiz failed! ${score}/${finalQuiz.length} correct. Need 70% to pass. Review the lessons and try again.</div>`;
-        }
-    }
-
-    function completeCurrentLesson() {
-        if (!currentLessonId) return;
-        if (completedLessons.includes(currentLessonId)) return;
-        if (currentLessonId === '6.1') {
-            let score = 0;
-            finalQuiz.forEach((q, idx) => { if (finalQuizAnswers[idx] === q.correct) score++; });
-            const passed = score >= Math.ceil(finalQuiz.length * 0.7);
-            if (!passed) { showToast('⚠️ You must pass the final quiz first!'); return; }
-        }
-        completedLessons.push(currentLessonId);
-        localStorage.setItem('pro_academy_completed', JSON.stringify(completedLessons));
-        updateAll();
-        closeModal();
-        showToast('✅ Lesson completed!');
-        if (completedLessons.length === modules.reduce((acc, m) => acc + m.lessons.length, 0)) showToast('🎉 CONGRATULATIONS! You completed all lessons!');
-    }
-
-    function updateAll() {
-        buildCourseGrid();
-        const totalLessons = modules.reduce((acc, m) => acc + m.lessons.length, 0);
-        const completed = completedLessons.length;
-        const percent = Math.round((completed/totalLessons)*100);
-        document.getElementById('progressPercent').innerHTML = `${percent}%`;
-        document.getElementById('progressFill').style.width = `${percent}%`;
-        if (completed === totalLessons) {
-            document.getElementById('certificateSection').style.display = 'block';
-            document.getElementById('completionDate').innerHTML = new Date().toLocaleDateString();
-            if (!studentName) {
-                studentName = prompt('🎓 Enter your name for the certificate:', 'Trader');
-                if (studentName) localStorage.setItem('pro_academy_name', studentName);
-                else studentName = 'PRO Trader';
-            }
-            document.getElementById('studentName').innerHTML = studentName;
-        } else {
-            document.getElementById('certificateSection').style.display = 'none';
-        }
-    }
-
-    document.getElementById('trialBtn').addEventListener('click', () => {
-        const msg = document.getElementById('trialMessage');
-        msg.innerHTML = '<span style="color:#FFD700;">📩 Please contact admin via email or WhatsApp to request your 7‑day trial link.</span>';
+    container.innerHTML = '';
+    items.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'coin-row';
+      row.innerHTML = `
+        <div class="coin-name">${item.symbol}</div>
+        <div class="coin-price">$${item.price.toFixed(4)}</div>
+        <div class="coin-change ${item.change >= 0 ? 'positive' : 'negative'}">
+          ${item.change >= 0 ? '+' : ''}${item.change.toFixed(2)}%
+        </div>
+      `;
+      container.appendChild(row);
     });
+  }
 
-    function downloadCertificate() {
-        const cert = document.getElementById('certificatePreview');
-        html2canvas(cert).then(canvas => {
-            const link = document.createElement('a');
-            link.download = `pro_rotator_certificate_${studentName.replace(/ /g,'_')}.png`;
-            link.href = canvas.toDataURL();
-            link.click();
-        }).catch(() => showToast('⚠️ Right-click and save as image'));
+  // Countdown timer (7 days from now)
+  function setCountdown() {
+    const target = new Date();
+    target.setDate(target.getDate() + 7);
+    target.setHours(0, 0, 0, 0);
+
+    function update() {
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('days').innerText = '00';
+        document.getElementById('hours').innerText = '00';
+        document.getElementById('minutes').innerText = '00';
+        document.getElementById('seconds').innerText = '00';
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (86400000)) / (3600000));
+      const mins = Math.floor((diff % 3600000) / 60000);
+      const secs = Math.floor((diff % 60000) / 1000);
+      document.getElementById('days').innerText = days.toString().padStart(2, '0');
+      document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').innerText = mins.toString().padStart(2, '0');
+      document.getElementById('seconds').innerText = secs.toString().padStart(2, '0');
     }
+    update();
+    setInterval(update, 1000);
+  }
 
-    function showToast(msg) {
-        const toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.innerHTML = msg;
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 3000);
-    }
-
-    function closeModal() { document.getElementById('lessonModal').classList.remove('active'); }
-
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-    document.head.appendChild(script);
-
-    updateAll();
+  fetchMarketData();
+  setInterval(fetchMarketData, 30000); // refresh every 30 sec
+  setCountdown();
 </script>
 </body>
 </html>
